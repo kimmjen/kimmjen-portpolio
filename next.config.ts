@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/kimmjen-portpolio',
+  // GitHub Pages 배포 시 아래 주석을 해제하세요
+  basePath: '/',
   images: {
     unoptimized: true,
   },
