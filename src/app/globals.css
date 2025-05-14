@@ -1,0 +1,232 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --border-color: #707070;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --border-color: #707070;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Noto Sans KR', 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-wider uppercase;
+  }
+}
+
+@layer components {
+  .ma-layout {
+    @apply flex fixed h-full w-full text-center;
+  }
+  
+  .ma-layout__item {
+    @apply relative w-full;
+  }
+  
+  .ma-layout__item--left {
+    @apply flex-none border-r border-[var(--border-color)] w-[29.1666666667%] overflow-hidden;
+  }
+  
+  .ma-logo {
+    @apply text-3xl font-bold tracking-widest mt-5 z-10 relative;
+    color: var(--foreground);
+  }
+  
+  .ma-nav {
+    @apply flex flex-col relative text-center overflow-auto;
+  }
+  
+  .ma-nav__list {
+    @apply my-auto py-5;
+  }
+  
+  .ma-nav__item {
+    @apply text-xl;
+  }
+  
+  .ma-nav__item + .ma-nav__item {
+    @apply mt-6;
+  }
+  
+  .ma-nav__item--active, .ma-nav__item:hover, .ma-nav__item:focus {
+    @apply font-bold;
+  }
+
+  .ma-article {
+    @apply flex absolute top-0 left-0 h-full w-full z-[1];
+  }
+  
+  .ma-article__section {
+    @apply relative w-full h-full;
+  }
+  
+  .ma-article__section + .ma-article__section {
+    @apply border-l border-[var(--border-color)];
+  }
+  
+  .ma-article__section:first-child {
+    @apply flex-1 overflow-y-auto;
+  }
+  
+  .ma-article__section:last-child {
+    @apply flex-none w-[41.1764705882%];
+  }
+  
+  .section-title {
+    @apply text-xl md:text-2xl font-bold uppercase tracking-widest text-center mb-12 mt-8;
+  }
+  
+  .ma-biography {
+    @apply flex flex-col text-sm mx-auto max-w-xl overflow-y-auto px-5 pb-5 w-full;
+  }
+  
+  .ma-biography > * {
+    @apply mx-auto w-full;
+  }
+  
+  .ma-biography__wrapper {
+    @apply m-auto;
+  }
+  
+  .ma-biography__info {
+    @apply border-b border-black py-5;
+  }
+  
+  .ma-biography__name {
+    @apply text-xl font-bold;
+  }
+  
+  .ma-biography__date {
+    @apply font-bold mt-3;
+  }
+  
+  .ma-biography__description {
+    @apply mt-8 text-left leading-relaxed;
+  }
+  
+  .ma-history {
+    @apply font-bold leading-tight py-5 text-left;
+  }
+  
+  .ma-history__item {
+    @apply flex;
+  }
+  
+  .ma-history__title {
+    @apply flex-none w-16 inline-block;
+  }
+  
+  .ma-history__item + .ma-history__item {
+    @apply mt-1;
+  }
+
+  @media (max-width: 1024px) {
+    .ma-layout {
+      @apply flex-col h-auto relative mx-auto max-w-3xl pt-28 overflow-x-hidden;
+    }
+    
+    .ma-layout__item {
+      @apply w-full;
+    }
+    
+    .ma-layout__item:first-child {
+      @apply bg-white fixed top-0 left-0 right-0 mx-auto max-w-3xl z-20;
+    }
+    
+    .ma-layout .ma-layout__item--left {
+      @apply border-r-0;
+    }
+    
+    .ma-article {
+      @apply flex-col h-auto static w-full;
+    }
+    
+    .ma-article__section {
+      @apply h-auto;
+    }
+    
+    .ma-article__section:first-child {
+      @apply w-full;
+    }
+    
+    .ma-article__section:last-child {
+      @apply w-full;
+    }
+    
+    .ma-article__section + .ma-article__section {
+      @apply border-l-0 border-t border-[var(--border-color)];
+    }
+    
+    .ma-logo {
+      @apply static text-3xl mb-4 mt-6 transform-none transition-none;
+    }
+    
+    .ma-nav {
+      @apply flex-row;
+    }
+    
+    .ma-nav__list {
+      @apply flex flex-1 flex-row flex-nowrap justify-between p-0;
+    }
+    
+    .ma-nav__item {
+      @apply flex-none text-sm py-3 px-4;
+    }
+    
+    .ma-nav__item + .ma-nav__item {
+      @apply mt-0;
+    }
+    
+    .ma-biography {
+      @apply text-xs px-7 pb-7;
+    }
+    
+    .ma-biography, .ma-biography > * {
+      @apply max-w-none;
+    }
+    
+    .ma-biography__info {
+      @apply border-b-0 pb-0 pt-24;
+    }
+    
+    .ma-biography__description {
+      @apply mt-10;
+    }
+    
+    .ma-history {
+      @apply pt-8;
+    }
+    
+    .ma-history__title {
+      @apply mr-7;
+    }
+  }
+}
