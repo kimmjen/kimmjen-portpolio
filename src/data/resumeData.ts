@@ -204,7 +204,7 @@ const resumeData: ResumeData = {
       title: "포트폴리오 웹사이트",
       description: "Next.js와 React를 활용한 개인 포트폴리오 웹사이트. Tailwind CSS로 반응형 디자인을 구현하고 사용자 경험을 개선했습니다.",
       period: "2024",
-      link: "https://github.com/kimmjen/Portfolio",
+      link: "https://github.com/kimmjen/kimmjen-portpolio",
       type: "개인 프로젝트"
     },
     {
