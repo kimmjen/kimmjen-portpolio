@@ -194,6 +194,13 @@ const resumeData: ResumeData = {
   ],
   projects: [
     {
+      title: "뜬뜬(ddendden) 프로젝트",
+      description: "유재석과 안테나 플러스 제작사의 콘텐츠 중심 웹 플랫폼. React, Next.js, TypeScript, Tailwind CSS로 개발된 팬 커뮤니티 허브로, 다양한 콘텐츠 시리즈(핑계고, 풍향고, 이달의 계원 등)를 제공하며 다국어 지원 및 시상식 시스템을 갖추고 있습니다.",
+      period: "2024.11 - 2025.02",
+      link: "https://ddendden.vercel.app/",
+      type: "개인 프로젝트"
+    },
+    {
       title: "포트폴리오 웹사이트",
       description: "Next.js와 React를 활용한 개인 포트폴리오 웹사이트. Tailwind CSS로 반응형 디자인을 구현하고 사용자 경험을 개선했습니다.",
       period: "2024",
