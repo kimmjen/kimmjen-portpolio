@@ -29,6 +29,9 @@ async function convertToPdf() {
           </div>
         `
       },
+      launch_options: {
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      },
       stylesheet_paths: [path.join(__dirname, 'resume-style.css')],
       css: `
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
