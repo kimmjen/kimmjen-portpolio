@@ -39,17 +39,6 @@ const skillIcons: Record<string, string> = {
   '데이터 시각화': '/images/skills/datavis.svg',
 };
 
-// 카테고리 아이콘 매핑
-const categoryIcons: Record<string, string> = {
-  'FRONT-END': '/images/categories/frontend.svg',
-  'BACK-END': '/images/categories/backend.svg',
-  'DATABASE': '/images/categories/database.svg',
-  'INFRA': '/images/categories/infra.svg',
-  'CLOUD': '/images/categories/cloud.svg',
-  'TOOLS': '/images/categories/tools.svg',
-  'OTHERS': '/images/categories/others.svg',
-};
-
 const SkillsSection = () => {
   return (
     <section id="skills" className="py-16">

@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faMapMarkerAlt, faCalendar, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import resumeData from '@/data/resumeData';
 import EmailModal from './EmailModal';
 
 const ContactSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (

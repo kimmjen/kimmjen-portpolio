@@ -79,7 +79,7 @@ const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose, recipientEmail
           message: data.error || '이메일 발송에 실패했습니다. 다시 시도해 주세요.'
         });
       }
-    } catch (error) {
+    } catch (_) {
       setSubmitStatus({
         success: false,
         message: '서버 연결에 문제가 발생했습니다. 나중에 다시 시도해 주세요.'

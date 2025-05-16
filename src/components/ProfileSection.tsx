@@ -1,6 +1,5 @@
 import React from 'react';
 import resumeData from '@/data/resumeData';
-import Link from 'next/link';
 
 const ProfileSection = () => {
   return (
