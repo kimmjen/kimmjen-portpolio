@@ -3,6 +3,9 @@
 import React from 'react';
 import Image from 'next/image';
 import resumeData from '@/data/resumeData';
+// Import the profile image directly
+import profilePic from '../../public/images/profile.jpg';
+
 
 const HeroSection = () => {
   return (
@@ -10,13 +13,14 @@ const HeroSection = () => {
       <div className="flex-1 flex flex-col justify-center">
         <div className="mx-auto max-w-lg px-5 text-center">
           <div className="mb-8 flex flex-col items-center">
-            <div className="mb-8 relative w-48 h-48 overflow-hidden">
+            <div className="mb-8 relative w-48 h-48 overflow-hidden rounded-full">
               <Image 
-                src="/images/profile.jpg" 
+                src={profilePic}
                 alt="Profile" 
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 768px) 100vw, 33vw"
                 onError={(e) => {
                   // 이미지 로드 실패 시 기본 스타일 적용
                   const target = e.target as HTMLImageElement;

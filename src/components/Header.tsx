@@ -3,163 +3,139 @@
 import { useState, useEffect } from 'react';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('profile');
 
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      // 첫 번째 컨텐츠 영역을 선택
-      const contentSection = document.querySelector('.ma-article__section:first-child');
-      if (!contentSection) return;
-      
       const sections = ['profile', 'experience', 'skills', 'projects', 'contact'];
+      const isDesktopLayout = window.innerWidth > 1024;
+      const mainContent = document.getElementById('main-content');
       
-      // 각 섹션에 대해 현재 화면에 보이는지 확인
+      // 활성화 섹션과 뷰포트 중앙의 거리를 기준으로 계산
+      const viewportCenter = isDesktopLayout && mainContent ? mainContent.clientHeight / 2 : window.innerHeight / 2;
+      let bestSection = '';
+      let minDistance = Infinity;
+
+      // 각 섹션을 확인하면서 뷰포트 중앙과 가장 가까운 섹션 찾기
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          const sectionTop = rect.top;
-          // 헤더의 높이를 고려하여 약간의 여유를 둡니다
-          if (sectionTop <= 200) {
-            setActiveSection(section);
+          
+          // 데스크톱과 모바일 레이아웃에 맞게 중앙 위치 계산
+          const centerDistance = Math.abs((rect.top + rect.bottom) / 2 - viewportCenter);
+          
+          // 현재 섹션이 화면에 표시되고 거리가 더 가까우면 갱신
+          if (centerDistance < minDistance) {
+            minDistance = centerDistance;
+            bestSection = section;
           }
         }
       }
+      
+      // 가장 적합한 섹션으로 활성화 상태 변경
+      if (bestSection) {
+        setActiveSection(bestSection);
+      }
     };
 
-    // 첫 번째 컨텐츠 영역에 스크롤 이벤트 리스너 연결
-    const contentSection = document.querySelector('.ma-article__section:first-child');
-    if (contentSection) {
-      contentSection.addEventListener('scroll', handleScroll);
-      return () => contentSection.removeEventListener('scroll', handleScroll);
+    // Add scroll event listeners
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.addEventListener('scroll', handleScroll);
     }
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    
+    // Initial check on mount
+    handleScroll();
+    
+    return () => {
+      if (mainContent) {
+        mainContent.removeEventListener('scroll', handleScroll);
+      }
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
-    if (section) {
-      const contentSection = document.querySelector('.ma-article__section:first-child');
-      if (contentSection) {
-        contentSection.scrollTo({
-          top: section.offsetTop - 50,
+    const mainContent = document.getElementById('main-content');
+    
+    if (section && mainContent) {
+      // 데스크톱 화면인지 모바일 화면인지 체크
+      const isDesktopLayout = window.innerWidth > 1024;
+      
+      if (isDesktopLayout) {
+        // 데스크톱 화면에서는 컨테이너 내부 스크롤 사용
+        mainContent.scrollTo({
+          top: section.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      } else {
+        // 모바일 화면에서는 일반 window 스크롤 사용
+        window.scrollTo({
+          top: section.offsetTop - 100,
           behavior: 'smooth'
         });
       }
-    }
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
+      
+      // 네비게이션 클릭 시 즉시 해당 섹션 활성화 (기다리지 않고)
+      setActiveSection(sectionId);
     }
   };
 
   return (
-    <nav className="ma-nav flex-1">
-      <ul className="ma-nav__list">
-        <li className={`ma-nav__item ${activeSection === 'profile' ? 'ma-nav__item--active' : ''}`}>
-          <a href="#profile" onClick={(e) => { e.preventDefault(); scrollToSection('profile'); }}>Profile</a>
+    <nav className="jm-nav flex-1">
+      <ul className="jm-nav__list">
+        <li className={`jm-nav__item ${activeSection === 'profile' ? 'jm-nav__item--active' : ''}`}>
+          <a 
+            href="#profile" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('profile'); }}
+            className="transition-all duration-300 hover:text-blue-600 focus:text-blue-600 focus:outline-none px-3 py-2 block hover:scale-105"
+          >
+            Profile
+          </a>
         </li>
-        <li className={`ma-nav__item ${activeSection === 'experience' ? 'ma-nav__item--active' : ''}`}>
-          <a href="#experience" onClick={(e) => { e.preventDefault(); scrollToSection('experience'); }}>Experience</a>
+        <li className={`jm-nav__item ${activeSection === 'experience' ? 'jm-nav__item--active' : ''}`}>
+          <a 
+            href="#experience" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('experience'); }}
+            className="transition-all duration-300 hover:text-blue-600 focus:text-blue-600 focus:outline-none px-3 py-2 block hover:scale-105"
+          >
+            Experience
+          </a>
         </li>
-        <li className={`ma-nav__item ${activeSection === 'skills' ? 'ma-nav__item--active' : ''}`}>
-          <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a>
+        <li className={`jm-nav__item ${activeSection === 'skills' ? 'jm-nav__item--active' : ''}`}>
+          <a 
+            href="#skills" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}
+            className="transition-all duration-300 hover:text-blue-600 focus:text-blue-600 focus:outline-none px-3 py-2 block hover:scale-105"
+          >
+            Skills
+          </a>
         </li>
-        <li className={`ma-nav__item ${activeSection === 'projects' ? 'ma-nav__item--active' : ''}`}>
-          <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a>
+        <li className={`jm-nav__item ${activeSection === 'projects' ? 'jm-nav__item--active' : ''}`}>
+          <a 
+            href="#projects" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}
+            className="transition-all duration-300 hover:text-blue-600 focus:text-blue-600 focus:outline-none px-3 py-2 block hover:scale-105"
+          >
+            Projects
+          </a>
         </li>
-        <li className={`ma-nav__item ${activeSection === 'contact' ? 'ma-nav__item--active' : ''}`}>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
+        <li className={`jm-nav__item ${activeSection === 'contact' ? 'jm-nav__item--active' : ''}`}>
+          <a 
+            href="#contact" 
+            onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
+            className="transition-all duration-300 hover:text-blue-600 focus:text-blue-600 focus:outline-none px-3 py-2 block hover:scale-105"
+          >
+            Contact
+          </a>
         </li>
       </ul>
-
-      {/* Mobile menu button */}
-      <button 
-        className="md:hidden absolute top-4 right-4"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      >
-        <svg 
-          className="w-6 h-6" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24" 
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {isMenuOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          )}
-        </svg>
-      </button>
-
-      {/* Mobile navigation - only shown on small screens */}
-      {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-50 pt-16">
-          <button 
-            className="absolute top-4 right-4"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          
-          <ul className="flex flex-col items-center pt-8">
-            <li className="py-4">
-              <a 
-                href="#profile" 
-                className="text-2xl font-bold tracking-wider uppercase"
-                onClick={(e) => { e.preventDefault(); scrollToSection('profile'); }}
-              >
-                Profile
-              </a>
-            </li>
-            <li className="py-4">
-              <a 
-                href="#experience" 
-                className="text-2xl font-bold tracking-wider uppercase"
-                onClick={(e) => { e.preventDefault(); scrollToSection('experience'); }}
-              >
-                Experience
-              </a>
-            </li>
-            <li className="py-4">
-              <a 
-                href="#skills" 
-                className="text-2xl font-bold tracking-wider uppercase"
-                onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}
-              >
-                Skills
-              </a>
-            </li>
-            <li className="py-4">
-              <a 
-                href="#projects" 
-                className="text-2xl font-bold tracking-wider uppercase"
-                onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}
-              >
-                Projects
-              </a>
-            </li>
-            <li className="py-4">
-              <a 
-                href="#contact" 
-                className="text-2xl font-bold tracking-wider uppercase"
-                onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
     </nav>
   );
 };

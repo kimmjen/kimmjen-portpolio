@@ -1,20 +1,36 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faMapMarkerAlt, faCalendar, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import resumeData from '@/data/resumeData';
+import EmailModal from './EmailModal';
 
 const ContactSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <section id="contact" className="py-16">
-      <div className="ma-biography">
+      <div className="jm-biography">
         <h3 className="uppercase tracking-wider font-bold text-xl text-center mb-8">
           Contact
         </h3>
         
-        <div className="ma-biography__wrapper text-center">
+        <div className="jm-biography__wrapper text-center">
           <div className="mb-10">
             <p className="text-lg mb-4">{resumeData.contact.email}</p>
             <p className="text-gray-600">{resumeData.contact.phone}</p>
+            
+            {/* <button
+              onClick={openModal}
+              className="mt-6 inline-flex items-center px-4 py-2 border border-[var(--border-color)] hover:bg-gray-50 text-sm font-medium tracking-wider transition-colors duration-300"
+            >
+              <FontAwesomeIcon icon={faPaperPlane} className="mr-2 h-4 w-4" />
+              이메일 보내기
+            </button> */}
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
@@ -40,6 +56,13 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
+
+      {/* 이메일 보내기 모달 */}
+      <EmailModal 
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        recipientEmail={resumeData.contact.email}
+      />
     </section>
   );
 };

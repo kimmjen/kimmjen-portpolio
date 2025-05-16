@@ -4,17 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "npm run generate-resume && npm run generate-career-doc",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && touch out/.nojekyll && git checkout -b gh-pages && git add out/* && git commit -m 'Deploy to GitHub Pages' && git subtree push --prefix out origin gh-pages"
+    "deploy": "npm run build && touch out/.nojekyll && git checkout -b gh-pages && git add out/* && git commit -m 'Deploy to GitHub Pages' && git subtree push --prefix out origin gh-pages",
+    "generate-resume": "node scripts/convert-resume.js",
+    "generate-career-doc": "node scripts/convert-career-doc.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@types/nodemailer": "^6.4.17",
     "next": "15.3.2",
+    "nodemailer": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -27,6 +32,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "gh-pages": "^6.3.0",
+    "marked": "^15.0.11",
+    "md-to-pdf": "^5.2.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

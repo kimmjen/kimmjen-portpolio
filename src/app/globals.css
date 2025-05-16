@@ -43,60 +43,60 @@ body {
 }
 
 @layer components {
-  .ma-layout {
+  .jm-layout {
     @apply flex fixed h-full w-full text-center;
   }
   
-  .ma-layout__item {
+  .jm-layout__item {
     @apply relative w-full;
   }
   
-  .ma-layout__item--left {
+  .jm-layout__item--left {
     @apply flex-none border-r border-[var(--border-color)] w-[29.1666666667%] overflow-hidden;
   }
   
-  .ma-logo {
+  .jm-logo {
     @apply text-3xl font-bold tracking-widest mt-5 z-10 relative;
     color: var(--foreground);
   }
   
-  .ma-nav {
+  .jm-nav {
     @apply flex flex-col relative text-center overflow-auto;
   }
   
-  .ma-nav__list {
+  .jm-nav__list {
     @apply my-auto py-5;
   }
   
-  .ma-nav__item {
+  .jm-nav__item {
     @apply text-xl;
   }
   
-  .ma-nav__item + .ma-nav__item {
+  .jm-nav__item + .jm-nav__item {
     @apply mt-6;
   }
   
-  .ma-nav__item--active, .ma-nav__item:hover, .ma-nav__item:focus {
+  .jm-nav__item--active, .jm-nav__item:hover, .jm-nav__item:focus {
     @apply font-bold;
   }
 
-  .ma-article {
-    @apply flex absolute top-0 left-0 h-full w-full z-[1];
+  .jm-article {
+    @apply flex absolute top-0 left-0 h-full w-full z-[1] overflow-hidden;
   }
   
-  .ma-article__section {
-    @apply relative w-full h-full;
+  .jm-article__section {
+    @apply relative w-full h-full overflow-auto scroll-smooth;
   }
   
-  .ma-article__section + .ma-article__section {
+  .jm-article__section + .jm-article__section {
     @apply border-l border-[var(--border-color)];
   }
   
-  .ma-article__section:first-child {
-    @apply flex-1 overflow-y-auto;
+  .jm-article__section:first-child {
+    @apply flex-1;
   }
   
-  .ma-article__section:last-child {
+  .jm-article__section:last-child {
     @apply flex-none w-[41.1764705882%];
   }
   
@@ -104,128 +104,128 @@ body {
     @apply text-xl md:text-2xl font-bold uppercase tracking-widest text-center mb-12 mt-8;
   }
   
-  .ma-biography {
+  .jm-biography {
     @apply flex flex-col text-sm mx-auto max-w-xl overflow-y-auto px-5 pb-5 w-full;
   }
   
-  .ma-biography > * {
+  .jm-biography > * {
     @apply mx-auto w-full;
   }
   
-  .ma-biography__wrapper {
+  .jm-biography__wrapper {
     @apply m-auto;
   }
   
-  .ma-biography__info {
+  .jm-biography__info {
     @apply border-b border-black py-5;
   }
   
-  .ma-biography__name {
+  .jm-biography__name {
     @apply text-xl font-bold;
   }
   
-  .ma-biography__date {
+  .jm-biography__date {
     @apply font-bold mt-3;
   }
   
-  .ma-biography__description {
+  .jm-biography__description {
     @apply mt-8 text-left leading-relaxed;
   }
   
-  .ma-history {
+  .jm-history {
     @apply font-bold leading-tight py-5 text-left;
   }
   
-  .ma-history__item {
+  .jm-history__item {
     @apply flex;
   }
   
-  .ma-history__title {
+  .jm-history__title {
     @apply flex-none w-16 inline-block;
   }
   
-  .ma-history__item + .ma-history__item {
+  .jm-history__item + .jm-history__item {
     @apply mt-1;
   }
 
   @media (max-width: 1024px) {
-    .ma-layout {
+    .jm-layout {
       @apply flex-col h-auto relative mx-auto max-w-3xl pt-28 overflow-x-hidden;
     }
     
-    .ma-layout__item {
+    .jm-layout__item {
       @apply w-full;
     }
     
-    .ma-layout__item:first-child {
+    .jm-layout__item:first-child {
       @apply bg-white fixed top-0 left-0 right-0 mx-auto max-w-3xl z-20;
     }
     
-    .ma-layout .ma-layout__item--left {
-      @apply border-r-0;
+    .jm-layout .jm-layout__item--left {
+      @apply border-r-0 border-b border-[var(--border-color)] pb-3;
     }
     
-    .ma-article {
+    .jm-article {
       @apply flex-col h-auto static w-full;
     }
     
-    .ma-article__section {
+    .jm-article__section {
       @apply h-auto;
     }
     
-    .ma-article__section:first-child {
+    .jm-article__section:first-child {
       @apply w-full;
     }
     
-    .ma-article__section:last-child {
+    .jm-article__section:last-child {
       @apply w-full;
     }
     
-    .ma-article__section + .ma-article__section {
+    .jm-article__section + .jm-article__section {
       @apply border-l-0 border-t border-[var(--border-color)];
     }
     
-    .ma-logo {
-      @apply static text-3xl mb-4 mt-6 transform-none transition-none;
+    .jm-logo {
+      @apply static text-2xl mb-2 mt-5 transform-none transition-none;
     }
     
-    .ma-nav {
+    .jm-nav {
       @apply flex-row;
     }
     
-    .ma-nav__list {
-      @apply flex flex-1 flex-row flex-nowrap justify-between p-0;
+    .jm-nav__list {
+      @apply flex flex-1 flex-row flex-wrap justify-center p-0;
     }
     
-    .ma-nav__item {
-      @apply flex-none text-sm py-3 px-4;
+    .jm-nav__item {
+      @apply text-sm py-2 px-3;
     }
     
-    .ma-nav__item + .ma-nav__item {
+    .jm-nav__item + .jm-nav__item {
       @apply mt-0;
     }
     
-    .ma-biography {
+    .jm-biography {
       @apply text-xs px-7 pb-7;
     }
     
-    .ma-biography, .ma-biography > * {
+    .jm-biography, .jm-biography > * {
       @apply max-w-none;
     }
     
-    .ma-biography__info {
-      @apply border-b-0 pb-0 pt-24;
+    .jm-biography__info {
+      @apply border-b-0 pb-0 pt-16;
     }
     
-    .ma-biography__description {
+    .jm-biography__description {
       @apply mt-10;
     }
     
-    .ma-history {
+    .jm-history {
       @apply pt-8;
     }
     
-    .ma-history__title {
+    .jm-history__title {
       @apply mr-7;
     }
   }

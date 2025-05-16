@@ -4,13 +4,13 @@ import resumeData from '@/data/resumeData';
 const ExperienceSection = () => {
   return (
     <section id="experience" className="py-16">
-      <div className="ma-biography">
+      <div className="jm-biography">
         <h3 className="uppercase tracking-wider font-bold text-xl text-center mb-8">
           Experience
         </h3>
         
-        <div className="ma-biography__wrapper">
-          <ul className="ma-history">
+        <div className="jm-biography__wrapper">
+          <ul className="jm-history">
             {resumeData.experience.map((exp, index) => (
               <li key={index} className="mb-12">
                 <div className="border-l-2 border-[var(--border-color)] pl-4 mb-6">

@@ -6,13 +6,13 @@ import resumeData from '@/data/resumeData';
 const ProjectsSection = () => {
   return (
     <section id="projects" className="py-16">
-      <div className="ma-biography">
+      <div className="jm-biography">
         <h3 className="text-xl font-bold uppercase tracking-widest text-center mb-12 mt-8">
           PROJECTS
           <div className="w-16 h-0.5 bg-black mx-auto mt-1"></div>
         </h3>
         
-        <div className="ma-biography__wrapper">
+        <div className="jm-biography__wrapper">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {resumeData.projects.map((project, index) => (
               <div key={index} className="border border-[var(--border-color)] hover:shadow-md transition-shadow">

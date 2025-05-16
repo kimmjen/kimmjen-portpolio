@@ -181,7 +181,7 @@ const resumeData: ResumeData = {
     },
     {
       category: "Cloud",
-      items: ["AWS"],
+      items: ["AWS EC2", "AWS Elastic Beanstalk", "AWS S3", "AWS Route53"],
     },
     {
       category: "Tools",

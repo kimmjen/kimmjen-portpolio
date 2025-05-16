@@ -53,13 +53,13 @@ const categoryIcons: Record<string, string> = {
 const SkillsSection = () => {
   return (
     <section id="skills" className="py-16">
-      <div className="ma-biography">
+      <div className="jm-biography">
         <h3 className="text-xl font-bold uppercase tracking-widest text-center mb-12 mt-8">
           SKILLS
           <div className="w-16 h-0.5 bg-black mx-auto mt-1"></div>
         </h3>
         
-        <div className="ma-biography__wrapper">
+        <div className="jm-biography__wrapper">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {resumeData.skills.map((skill, index) => (
               <div 
@@ -67,33 +67,19 @@ const SkillsSection = () => {
                 className="border border-[var(--border-color)] p-5 rounded"
               >
                 <h4 className="uppercase tracking-wider font-bold mb-4 border-b border-[var(--border-color)] pb-2 flex items-center justify-center">
-                  {categoryIcons[skill.category] && (
-                    <div className="relative w-5 h-5 mr-2">
-                      {/* <Image
-                        src={categoryIcons[skill.category]}
-                        alt={skill.category}
-                        fill
-                        className="object-contain"
-                        onError={(e) => {
-                          // 이미지 로드 실패 시 숨김 처리
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                        }}
-                      /> */}
-                    </div>
-                  )}
                   {skill.category}
                 </h4>
                 
                 <ul className="space-y-4">
                   {skill.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="text-sm flex items-center justify-center">
-                      {getSkillIcon(item) && (
+                      {getSkillIcon(item) ? (
                         <div className="relative w-4 h-4 mr-2">
                           <Image
                             src={getSkillIcon(item)}
                             alt={item}
-                            fill
+                            width={16}
+                            height={16}
                             className="object-contain"
                             onError={(e) => {
                               // 이미지 로드 실패 시 숨김 처리
@@ -102,6 +88,8 @@ const SkillsSection = () => {
                             }}
                           />
                         </div>
+                      ) : (
+                        <div className="w-4 h-4 mr-2"></div>
                       )}
                       {item}
                     </li>
@@ -134,8 +122,8 @@ function getSkillIcon(skillName: string): string {
     }
   }
   
-  // 일치하는 항목이 없으면 기본 아이콘 반환
-  return '/images/skills/default.svg';
+  // 일치하는 항목이 없으면 빈 문자열 반환 (아이콘 표시 안함)
+  return '';
 }
 
 export default SkillsSection; 
