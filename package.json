@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && touch out/.nojekyll && git checkout -b gh-pages && git add -f out/* && git commit -m 'Deploy to GitHub Pages' && git subtree push --prefix out origin gh-pages"
+    "deploy": "GITHUB_PAGES=true next build && touch out/.nojekyll && gh-pages -d out"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
