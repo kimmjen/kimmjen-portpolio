@@ -1,43 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import resumeData from '@/data/resumeData';
-
-// 기술 아이콘 매핑 객체
-const skillIcons: Record<string, string> = {
-  // 프론트엔드
-  'Vue.js': '/images/skills/vue.svg',
-  'HTML5': '/images/skills/html5.svg',
-  'CSS3': '/images/skills/css3.svg',
-  'JavaScript': '/images/skills/javascript.svg',
-  
-  // 백엔드
-  'Python': '/images/skills/python.svg',
-  'Flask': '/images/skills/flask.svg',
-  'FastAPI': '/images/skills/fastapi.svg',
-  
-  // 데이터베이스
-  'SQL': '/images/skills/sql.svg',
-  'PostgreSQL': '/images/skills/postgresql.svg',
-  
-  // 인프라
-  'Docker': '/images/skills/docker.svg',
-  'Kubernetes': '/images/skills/kubernetes.svg',
-  
-  // 클라우드
-  'AWS': '/images/skills/aws.svg',
-  
-  // 도구
-  'Git': '/images/skills/git.svg',
-  'GitHub': '/images/skills/github.svg',
-  'Slack': '/images/skills/slack.svg',
-  
-  // 기타
-  'CI/CD': '/images/skills/cicd.svg',
-  'RESTful API': '/images/skills/api.svg',
-  '데이터 시각화': '/images/skills/datavis.svg',
-};
 
 const SkillsSection = () => {
   return (
@@ -61,25 +25,7 @@ const SkillsSection = () => {
                 
                 <ul className="space-y-4">
                   {skill.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-sm flex items-center justify-center">
-                      {getSkillIcon(item) ? (
-                        <div className="relative w-4 h-4 mr-2">
-                          <Image
-                            src={getSkillIcon(item)}
-                            alt={item}
-                            width={16}
-                            height={16}
-                            className="object-contain"
-                            onError={(e) => {
-                              // 이미지 로드 실패 시 숨김 처리
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                            }}
-                          />
-                        </div>
-                      ) : (
-                        <div className="w-4 h-4 mr-2"></div>
-                      )}
+                    <li key={itemIndex} className="text-sm text-center">
                       {item}
                     </li>
                   ))}
@@ -96,23 +42,5 @@ const SkillsSection = () => {
     </section>
   );
 };
-
-// 스킬명에 맞는 아이콘 경로 반환
-function getSkillIcon(skillName: string): string {
-  // 전체 이름이 일치하는 경우 찾기
-  if (skillIcons[skillName]) {
-    return skillIcons[skillName];
-  }
-  
-  // 부분 일치하는 경우 찾기
-  for (const key in skillIcons) {
-    if (skillName.includes(key) || key.includes(skillName)) {
-      return skillIcons[key];
-    }
-  }
-  
-  // 일치하는 항목이 없으면 빈 문자열 반환 (아이콘 표시 안함)
-  return '';
-}
 
 export default SkillsSection; 

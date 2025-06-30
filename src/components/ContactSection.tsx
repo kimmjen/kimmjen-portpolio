@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone, faEnvelope, faMapMarkerAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import resumeData from '@/data/resumeData';
 import EmailModal from './EmailModal';
 
@@ -21,7 +19,7 @@ const ContactSection = () => {
         <div className="jm-biography__wrapper text-center">
           <div className="mb-10">
             <p className="text-lg mb-4">{resumeData.contact.email}</p>
-            <p className="text-gray-600">{resumeData.contact.phone}</p>
+            {/* <p className="text-gray-600">{resumeData.contact.phone}</p> */}
             
             {/* <button
               onClick={openModal}
@@ -32,7 +30,7 @@ const ContactSection = () => {
             </button> */}
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
             <div className="border border-[var(--border-color)] flex items-center p-4">
               <FontAwesomeIcon icon={faPhone} className="text-gray-700 text-xs w-3 h-3 mr-2" />
               <p className="text-sm">{resumeData.contact.phone}</p>
@@ -52,7 +50,7 @@ const ContactSection = () => {
               <FontAwesomeIcon icon={faCalendar} className="text-gray-700 text-xs w-3 h-3 mr-2" />
               <p className="text-sm">{resumeData.contact.birth}</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

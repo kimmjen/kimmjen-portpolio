@@ -57,10 +57,10 @@ const ProfileSection = () => {
           </ul>
           
           <div className="font-bold leading-tight py-5 text-left mt-8">
-            <div className="flex">
+            {/* <div className="flex">
               <span className="flex-none w-16 inline-block">연락처</span>
               <span className="flex-1">{resumeData.contact.phone}</span>
-            </div>
+            </div> */}
             <div className="flex mt-1">
               <span className="flex-none w-16 inline-block">이메일</span>
               <span className="flex-1">{resumeData.contact.email}</span>
